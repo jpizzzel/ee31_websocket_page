@@ -25,17 +25,20 @@ function connectToServer(e) {
   websocketConnection.addEventListener("message", (event) => {
     const msg = String(event.data ?? "");
     // FILTER: only keep messages that include the current server ID
-    if (!currentServerId || !msg.includes(currentServerId)) return;
+    // If no server ID is provided, show all messages
+    if (currentServerId && !msg.includes(currentServerId)) return;
 
     // Enqueue the filtered message (most recent at top, max 5)
     messageQueue.pop();
-    messageQueue.unshift(msg);
+    messageQueue.unshift(`[RECEIVED] ${msg}`);
     renderMessages(messageQueue);
   });
 }
 
 function connectionOpen() {
-  document.getElementById("connection-status").innerText = "Connected";
+  const statusElement = document.getElementById("connection-status");
+  statusElement.innerText = "Connected";
+  statusElement.className = "status-indicator connected";
   // Send the server ID once connected (if required by your backend)
   const id = currentServerId || document.getElementById("server-id").value.trim();
   if (id) {
@@ -45,7 +48,9 @@ function connectionOpen() {
 
 function connectionClosed() {
   websocketConnection = undefined;
-  document.getElementById("connection-status").innerText = "Not Connected";
+  const statusElement = document.getElementById("connection-status");
+  statusElement.innerText = "Not Connected";
+  statusElement.className = "status-indicator";
 }
 
 function renderMessages(messages) {
@@ -64,7 +69,16 @@ function sendMessage(e) {
   const input = document.getElementById("send-message-input");
   const text = input.value;
   if (text.trim() === "") return;
+  
+  // Send the message
   websocketConnection.send(text);
+  
+  // Display the sent message in the message queue
+  messageQueue.pop();
+  messageQueue.unshift(`[SENT] ${text}`);
+  renderMessages(messageQueue);
+  
+  // Clear the input
   input.value = "";
 }
 

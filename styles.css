@@ -1,0 +1,108 @@
+
+/* styles.css */
+:root {
+  --bg: #0b1020;
+  --bg-2: #0e1329;
+  --card: #1e293b;
+  --text: #e5e7eb;
+  --accent: #6366f1;
+  --border: #334155;
+  --success: #16a34a;
+  --danger: #ef4444;
+  --radius: 12px;
+  --shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.app {
+  width: 100%;
+  max-width: 800px;
+  background: rgba(17, 24, 39, 0.8);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.header {
+  padding: 20px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+
+.status {
+  padding: 16px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.status-indicator {
+  font-weight: 600;
+  color: var(--danger);
+}
+
+.content {
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background: var(--card);
+  padding: 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.card h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+}
+
+input, button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #0f172a;
+  color: var(--text);
+}
+
+button {
+  background: var(--accent);
+  border: none;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #4f46e5;
+}
+
+.messages p {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  margin: 0;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.messages p:last-child {
+  border-bottom: none;
+}

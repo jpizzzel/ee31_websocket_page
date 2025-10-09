@@ -82,7 +82,67 @@ function sendMessage(e) {
   input.value = "";
 }
 
+function sendQuickMessage(message) {
+  if (!websocketConnection || websocketConnection.readyState !== WebSocket.OPEN) {
+    alert("Cannot send message, WebSocket connection is not active.");
+    return;
+  }
+  
+  // Send the message
+  websocketConnection.send(message);
+  
+  // Display the sent message in the message queue
+  messageQueue.pop();
+  messageQueue.unshift(`[SENT] ${message}`);
+  renderMessages(messageQueue);
+}
+
+function sendSpeedMessage(speed) {
+  const message = `SPEED:${speed}`;
+  sendQuickMessage(message);
+}
+
+function updateSpeedDisplay(value) {
+  document.getElementById('speed-value').textContent = value;
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("connect-form").addEventListener("submit", connectToServer);
   document.getElementById("send-message-form").addEventListener("submit", sendMessage);
+  
+  // Add event listeners for message buttons
+  const messageButtons = document.querySelectorAll('.message-btn');
+  messageButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const message = this.getAttribute('data-message');
+      sendQuickMessage(message);
+    });
+  });
+  
+  // Add event listeners for speed controls
+  const speedSlider = document.getElementById('speed-slider');
+  const sendSpeedBtn = document.getElementById('send-speed-btn');
+  const speedButtons = document.querySelectorAll('.speed-btn');
+  
+  // Speed slider functionality
+  speedSlider.addEventListener('input', function() {
+    updateSpeedDisplay(this.value);
+  });
+  
+  // Send speed button functionality
+  sendSpeedBtn.addEventListener('click', function() {
+    const speed = speedSlider.value;
+    sendSpeedMessage(speed);
+  });
+  
+  // Speed buttons functionality
+  speedButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const speed = this.getAttribute('data-speed');
+      sendSpeedMessage(speed);
+      // Update slider to match clicked button
+      speedSlider.value = speed;
+      updateSpeedDisplay(speed);
+    });
+  });
 });

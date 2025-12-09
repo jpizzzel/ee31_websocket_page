@@ -1,0 +1,86 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EE31 FC — WebSocket Controls</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="index.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1>EE31 FC WebSocket Controls</h1>
+    </header>
+
+    <section class="status">
+      <p>Connection Status: <span id="connection-status" class="status-indicator">Not Connected</span></p>
+    </section>
+
+    <main class="content">
+      <form id="connect-form" class="card">
+        <h2>Connect to Server</h2>
+        <label for="server-id">Server ID:</label>
+        <input type="text" id="server-id" name="server-id" placeholder="Enter Server ID">
+        <button type="submit">Connect</button>
+      </form>
+
+      <!-- speed control for future use -->
+      <!-- <section class="card">
+        <h2>Speed Control</h2>
+        <div class="speed-controls">
+          <div class="speed-slider-container">
+            <label for="speed-slider">Speed: <span id="speed-value">5</span></label>
+            <input type="range" id="speed-slider" min="0" max="9" value="5" step="1">
+            <button id="send-speed-btn" class="speed-send-btn">Send Speed</button>
+          </div>
+          <div class="speed-buttons">
+            <button class="speed-btn" data-speed="0">SPEED:0</button>
+            <button class="speed-btn" data-speed="1">SPEED:1</button>
+            <button class="speed-btn" data-speed="2">SPEED:2</button>
+            <button class="speed-btn" data-speed="3">SPEED:3</button>
+            <button class="speed-btn" data-speed="4">SPEED:4</button>
+            <button class="speed-btn" data-speed="5">SPEED:5</button>
+            <button class="speed-btn" data-speed="6">SPEED:6</button>
+            <button class="speed-btn" data-speed="7">SPEED:7</button>
+            <button class="speed-btn" data-speed="8">SPEED:8</button>
+            <button class="speed-btn" data-speed="9">SPEED:9</button>
+          </div>
+        </div>
+      </section> -->
+
+      <section class="card">
+        <h2>Quick Commands</h2>
+        <div class="message-buttons">
+          <button class="message-btn" data-message="MOVE:GOFORWARD">Move Forward</button>
+          <button class="message-btn" data-message="MOVE:GOBACKWARD">Move Backward</button>
+          <button class="message-btn" data-message="MOVE:TURNLEFT">Turn Left</button>
+          <button class="message-btn" data-message="MOVE:TURNRIGHT">Turn Right</button>
+          <button class="message-btn" data-message="MOVE:STOP">STOP</button>
+          <button class="message-btn" data-message="MOVE:PIVOTRIGHT">Pivot Right</button>
+          <button class="message-btn" data-message="MOVE:PIVOTLEFT">Pivot Left</button>
+        </div>
+      </section>
+
+      <form id="send-message-form" class="card">
+        <h2>Send a Message</h2>
+        <label for="send-message-input">Message:</label>
+        <input type="text" id="send-message-input" name="message" placeholder="Type your message">
+        <button type="submit">Send</button>
+      </form>
+
+      <section class="card messages">
+        <h2>Messages</h2>
+        <div id="messages">
+          <p id="msg-1"></p>
+          <p id="msg-2"></p>
+          <p id="msg-3"></p>
+          <p id="msg-4"></p>
+          <p id="msg-5"></p>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

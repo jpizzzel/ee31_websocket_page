@@ -1,86 +1,95 @@
 <!-- index.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EE31 FC — WebSocket Controls</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="index.js" defer></script>
-</head>
-<body>
-  <div class="app">
-    <header class="header">
-      <h1>EE31 FC WebSocket Controls</h1>
-    </header>
+<!doctype html>
+<meta charset="utf-8" />
+<title>EE31 - Arduino WebSocket Client</title>
+<link rel="stylesheet" href="./styles.css">
 
-    <section class="status">
-      <p>Connection Status: <span id="connection-status" class="status-indicator">Not Connected</span></p>
-    </section>
+<div class="container">
+  <h1>EE31 - Arduino WebSocket Client</h1>
 
-    <main class="content">
-      <form id="connect-form" class="card">
-        <h2>Connect to Server</h2>
-        <label for="server-id">Server ID:</label>
-        <input type="text" id="server-id" name="server-id" placeholder="Enter Server ID">
-        <button type="submit">Connect</button>
-      </form>
+  <!-- Connection Section -->
+  <section class="card">
+    <h2>Connection</h2>
+    <div class="row">
+      <label>WS URL:</label>
+      <input id="wsUrl" size="40" value="ws://localhost:8080" />
+      <label>Client ID:</label>
+      <input id="server-id" size="16" value="F392FC86D8D7" />
+      <button id="btnConnect" class="btn-primary">Connect</button>
+      <span id="status" class="status">Not Connected</span>
+    </div>
+  </section>
 
-      <!-- speed control for future use -->
-      <!-- <section class="card">
-        <h2>Speed Control</h2>
-        <div class="speed-controls">
-          <div class="speed-slider-container">
-            <label for="speed-slider">Speed: <span id="speed-value">5</span></label>
-            <input type="range" id="speed-slider" min="0" max="9" value="5" step="1">
-            <button id="send-speed-btn" class="speed-send-btn">Send Speed</button>
-          </div>
-          <div class="speed-buttons">
-            <button class="speed-btn" data-speed="0">SPEED:0</button>
-            <button class="speed-btn" data-speed="1">SPEED:1</button>
-            <button class="speed-btn" data-speed="2">SPEED:2</button>
-            <button class="speed-btn" data-speed="3">SPEED:3</button>
-            <button class="speed-btn" data-speed="4">SPEED:4</button>
-            <button class="speed-btn" data-speed="5">SPEED:5</button>
-            <button class="speed-btn" data-speed="6">SPEED:6</button>
-            <button class="speed-btn" data-speed="7">SPEED:7</button>
-            <button class="speed-btn" data-speed="8">SPEED:8</button>
-            <button class="speed-btn" data-speed="9">SPEED:9</button>
-          </div>
-        </div>
-      </section> -->
+  <!-- Camera Control Section -->
+  <!-- <section class="card">
+    <h2>📸 Camera Control</h2>
+    <div class="camera-status">
+      <span id="arduino-status" class="status-indicator">⚪ Arduino Disconnected</span>
+    </div>
+    <div class="row">
+      <button id="capture-btn" class="btn-primary">📷 Capture Image</button>
+      <button id="auto-capture-btn" class="btn-secondary">▶️ Start Auto Capture</button>
+      <label>Resolution:</label>
+      <select id="resolution-select">
+        <option value="0">160x120</option>
+        <option value="1">320x240</option>
+        <option value="2" selected>640x480</option>
+        <option value="3">1024x768</option>
+        <option value="4">1280x1024</option>
+        <option value="5">1600x1200</option>
+      </select>
+    </div>
+  </section> -->
 
-      <section class="card">
-        <h2>Quick Commands</h2>
-        <div class="message-buttons">
-          <button class="message-btn" data-message="MOVE:GOFORWARD">Move Forward</button>
-          <button class="message-btn" data-message="MOVE:GOBACKWARD">Move Backward</button>
-          <button class="message-btn" data-message="MOVE:TURNLEFT">Turn Left</button>
-          <button class="message-btn" data-message="MOVE:TURNRIGHT">Turn Right</button>
-          <button class="message-btn" data-message="MOVE:STOP">STOP</button>
-          <button class="message-btn" data-message="MOVE:PIVOTRIGHT">Pivot Right</button>
-          <button class="message-btn" data-message="MOVE:PIVOTLEFT">Pivot Left</button>
-        </div>
-      </section>
+  <!-- Live View Section -->
+  <!-- <section class="card">
+    <h2>🖼️ Live View</h2>
+    <div class="live-view">
+      <img id="live-image" alt="Camera feed will appear here" />
+      <div id="no-image-msg" class="no-image">No image captured yet</div>
+    </div>
+    <div class="row">
+      <button id="download-btn" class="btn-secondary">💾 Download Image</button>
+      <span id="image-info"></span>
+    </div>
+  </section> -->
 
-      <form id="send-message-form" class="card">
-        <h2>Send a Message</h2>
-        <label for="send-message-input">Message:</label>
-        <input type="text" id="send-message-input" name="message" placeholder="Type your message">
-        <button type="submit">Send</button>
-      </form>
+  <!-- Image Gallery -->
+  <!-- <section class="card">
+    <h2>🎞️ Image Gallery (Last 10)</h2>
+    <div id="gallery" class="gallery">
+      <div class="gallery-empty">Images will appear here after capture</div>
+    </div>
+    <button id="clear-gallery-btn" class="btn-secondary">🗑️ Clear Gallery</button>
+  </section> -->
 
-      <section class="card messages">
-        <h2>Messages</h2>
-        <div id="messages">
-          <p id="msg-1"></p>
-          <p id="msg-2"></p>
-          <p id="msg-3"></p>
-          <p id="msg-4"></p>
-          <p id="msg-5"></p>
-        </div>
-      </section>
-    </main>
-  </div>
-</body>
-</html>
+  <!-- Manual Upload Section -->
+  <!-- <section class="card">
+    <h2>📤 Manual Upload (Testing)</h2>
+    <div class="row">
+      <input id="image-file" type="file" accept="image/*" />
+      <button id="send-image-btn" class="btn-secondary">Upload Image</button>
+      <button id="send-probe-btn" class="btn-secondary">Send Tiny Probe</button>
+    </div>
+  </section> -->
+
+  <!-- Send Message Section -->
+  <section class="card">
+    <h2>Send Message</h2>
+    <div class="row">
+      <input id="ws-message" type="text" placeholder="Type your message here..." style="flex: 1; min-width: 200px;" />
+      <button id="send-msg-btn" class="btn-primary">Send</button>
+    </div>
+    <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px;">
+      Send custom commands to the WebSocket server (e.g., START)
+    </p>
+  </section>
+
+  <!-- Log Section -->
+  <section class="card">
+    <h2>Activity Log</h2>
+    <pre id="log"></pre>
+  </section>
+</div>
+
+<script src="./index.js"></script>

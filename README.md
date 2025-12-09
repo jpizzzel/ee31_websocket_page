@@ -1,41 +1,15 @@
-# EE31 WebSocket Client
+# EE31 ArduCAM WebSocket Client
 
-WebSocket client for communicating with our EE31 arduino
+WebSocket-based web application for interacting with Arduino via WS.
 
-### Connecting to Server
-- Enter a Server ID in the "Connect to Server" section
-- Click "Connect" to establish WebSocket connection
-- Connection status will show "Connected" when successful
+## Quick Start
 
-### Sending Messages
-- Type your message in the "Send a Message" section
-- Click "Send" to transmit the message
-- Sent messages appear with `[SENT]` prefix
+Need to either conncet to the custom WebSocket server and run it through docker using this command:
 
-### Viewing Messages
-- Incoming messages display with `[RECEIVED]` prefix
-- Messages are filtered by Server ID
-- Shows last 5 messages in chronological order
+docker run -p 8080:8080 gabrielsessions/ee31-server:latest
 
-## 🛠️ Technical Details
+or you can connect to the class WebSocket server.
 
-- **WebSocket Server**: `ws://34.28.153.91`
-- **Message Queue**: Maintains last 5 messages
-- **Filtering**: Server ID substring matching
-- **Browser Support**: Modern browsers with WebSocket support
 
 **EE31 Project Team**
-- **Jonah**
-- **Paul**
-- **Michael**
-- **Daniel**
-
-## File Structure
-
-```
-ee31-webclient/
-├── index.html       
-├── styles.css         
-├── index.js        
-└── README.md         
-```
+- **Jonah** - **Paul** - **Michael** - **Daniel**

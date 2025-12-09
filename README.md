@@ -1,4 +1,4 @@
-# EE31 ArduCAM WebSocket Client
+# EE31 Arduino WebSocket Client
 
 WebSocket-based web application for interacting with Arduino via WS.
 

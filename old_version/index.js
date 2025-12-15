@@ -17,8 +17,8 @@ function connectToServer(e) {
     websocketConnection.close();
   }
 
-  // websocketConnection = new WebSocket("ws://34.28.153.91");
-  websocketConnection = new WebSocket("ws://localhost:8080")
+  websocketConnection = new WebSocket("ws://34.28.153.91");
+  // websocketConnection = new WebSocket("ws://localhost:8080")
 
   websocketConnection.addEventListener("open", connectionOpen);
   websocketConnection.addEventListener("close", connectionClosed);

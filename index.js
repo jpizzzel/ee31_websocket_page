@@ -1,11 +1,10 @@
-// index.js - Enhanced for ArduCAM control
-
 let ws;
 let isAuthed = false;
 let nextFrameId = 1;
 let currentServerId = "";
 let isAutoCapture = false;
 
+// old image stuff, no longer needed (for old go beyond with camera)
 // Image gallery storage
 const imageGallery = []; // Stores {url, timestamp, frameId, bytes}
 const MAX_GALLERY_SIZE = 10;

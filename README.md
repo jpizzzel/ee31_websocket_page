@@ -20,5 +20,9 @@ Use ws://localhost:8080 for running locally with docker container
 
 F392FC86D8D7
 
+### Web page
+<img width="1895" height="1025" alt="image" src="https://github.com/user-attachments/assets/6b1b7f09-56b2-474f-a2d1-ed051e1b6f05" />
+
+
 **EE31 Project Team**
 - **Jonah** - **Paul** - **Michael** - **Daniel**

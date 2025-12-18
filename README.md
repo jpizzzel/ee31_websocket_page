@@ -1,6 +1,6 @@
 # EE31 Arduino WebSocket Client
 
-WebSocket-based web application for interacting with Arduino via WS.
+WebSocket-based web application for interacting with Arduino via WS. Final version of code in index.html and index.js
 
 ## Quick Start
 
